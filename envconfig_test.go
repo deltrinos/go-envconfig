@@ -1493,12 +1493,12 @@ func TestProcessWith(t *testing.T) {
 		{
 			name: "openfaasSecret/test1",
 			input: &struct {
-				Field string `env:"FIELD,openfaasSecret"`
+				Field string `env:"FIELD,openfaasSecret,default=default"`
 			}{},
 			exp: &struct {
-				Field string `env:"FIELD,openfaasSecret"`
+				Field string `env:"FIELD,openfaasSecret,default=default"`
 			}{
-				Field: "", // uses default
+				Field: "default", // uses default
 			},
 			lookuper: MapLookuper(map[string]string{}),
 		},
