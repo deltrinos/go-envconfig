@@ -1,15 +1,9 @@
 # Envconfig
 
-[![GoDoc](https://img.shields.io/badge/go-documentation-blue.svg?style=flat-square)](https://pkg.go.dev/mod/github.com/sethvargo/go-envconfig)
-[![GitHub Actions](https://img.shields.io/github/workflow/status/sethvargo/go-envconfig/Test?style=flat-square)](https://github.com/sethvargo/go-envconfig/actions?query=workflow%3ATest)
-
 Envconfig populates struct field values based on environment variables or
 arbitrary lookup functions. It supports pre-setting mutations, which is useful
 for things like converting values to uppercase, trimming whitespace, or looking
 up secrets.
-
-**Note:** Versions prior to v0.2 used a different import path. This README and
-examples are for v0.2+.
 
 ## Usage
 
@@ -17,8 +11,10 @@ Define a struct with fields using the `env` tag:
 
 ```go
 type MyConfig struct {
-  Port     int    `env:"PORT"`
-  Username string `env:"USERNAME"`
+  Port      int    `env:"PORT"`
+  Username  string `env:"USERNAME"`
+  Password  string `env:"PASS,required"`
+  Password2 string `env:"PASS2,openfaasSecret"`
 }
 ```
 
